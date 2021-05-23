@@ -6,7 +6,7 @@
   "terminal.integrated.fontFamily": "'Iosevka Fixed', monospace",
   "terminal.integrated.fontSize": 18,
   "terminal.integrated.fontWeight": "500",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "[c]": {
     "editor.tabSize": 4
   },
