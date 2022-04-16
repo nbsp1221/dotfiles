@@ -1,11 +1,14 @@
 {
   "debug.javascript.codelens.npmScripts": "never",
-  "editor.fontFamily": "'Cascadia Code', 'Noto Sans CJK KR', monospace",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
   "editor.tabSize": 2,
-  "terminal.integrated.fontFamily": "'Iosevka Fixed', monospace",
+  "gitlens.hovers.currentLine.over": "line",
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.fontFamily": "'Inconsolata NF'",
   "terminal.integrated.fontSize": 18,
-  "terminal.integrated.fontWeight": "500",
+  "workbench.colorTheme": "Default Dark+",
   "workbench.iconTheme": "material-icon-theme",
   "[c]": {
     "editor.tabSize": 4
