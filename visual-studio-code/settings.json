@@ -1,9 +1,13 @@
 {
   "debug.javascript.codelens.npmScripts": "never",
   "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
   "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
   "editor.tabSize": 2,
+  "explorer.compactFolders": false,
   "gitlens.hovers.currentLine.over": "line",
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.fontFamily": "'Inconsolata NF'",
