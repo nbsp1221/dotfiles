@@ -1,0 +1,18 @@
+{
+  "windows": {
+    "local": [
+      "ms-vscode-remote.remote-ssh",
+      "ms-vscode-remote.remote-ssh-edit",
+      "ms-vscode-remote.remote-wsl",
+      "ms-vscode.remote-explorer",
+      "PKief.material-icon-theme"
+    ],
+    "wsl": [
+      "arcanis.vscode-zipfs",
+      "dbaeumer.vscode-eslint",
+      "eamodio.gitlens",
+      "streetsidesoftware.code-spell-checker",
+      "WakaTime.vscode-wakatime"
+    ]
+  }
+}
