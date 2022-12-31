@@ -10,8 +10,8 @@
   "explorer.compactFolders": false,
   "gitlens.hovers.currentLine.over": "line",
   "security.workspace.trust.untrustedFiles": "open",
-  "terminal.integrated.fontFamily": "'Inconsolata NF'",
-  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.fontFamily": "'Cascadia Mono'",
+  "terminal.integrated.fontSize": 15,
   "workbench.colorTheme": "Default Dark+",
   "workbench.iconTheme": "material-icon-theme",
   "[c]": {
