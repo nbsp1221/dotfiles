@@ -49,6 +49,7 @@
   },
   "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
+  "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
   "gitlens.codeLens.enabled": false,
