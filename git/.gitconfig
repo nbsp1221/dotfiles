@@ -4,6 +4,8 @@
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main
 [user]
 	name = Naki
 	email = nbsp1221@gmail.com
