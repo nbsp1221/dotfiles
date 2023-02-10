@@ -1,31 +1,29 @@
 {
-  "windows": {
-    "local": [
-      "ms-toolsai.jupyter-keymap",
-      "ms-vscode-remote.remote-containers",
-      "ms-vscode-remote.remote-ssh",
-      "ms-vscode-remote.remote-ssh-edit",
-      "ms-vscode-remote.remote-wsl",
-      "ms-vscode.remote-explorer",
-      "PKief.material-icon-theme"
-    ],
-    "wsl": [
-      "arcanis.vscode-zipfs",
-      "bradlc.vscode-tailwindcss",
-      "dbaeumer.vscode-eslint",
-      "eamodio.gitlens",
-      "GitHub.copilot",
-      "JackMacWindows.vscode-computercraft",
-      "ms-python.isort",
-      "ms-python.python",
-      "ms-python.vscode-pylance",
-      "ms-toolsai.jupyter",
-      "ms-toolsai.jupyter-renderers",
-      "ms-toolsai.vscode-jupyter-cell-tags",
-      "ms-toolsai.vscode-jupyter-slideshow",
-      "streetsidesoftware.code-spell-checker",
-      "sumneko.lua",
-      "WakaTime.vscode-wakatime"
-    ]
-  }
+  "local": [
+    "ms-toolsai.jupyter-keymap",
+    "ms-vscode-remote.remote-containers",
+    "ms-vscode-remote.remote-ssh",
+    "ms-vscode-remote.remote-ssh-edit",
+    "ms-vscode-remote.remote-wsl",
+    "ms-vscode.remote-explorer",
+    "PKief.material-icon-theme"
+  ],
+  "workspace": [
+    "arcanis.vscode-zipfs",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "GitHub.copilot",
+    "JackMacWindows.vscode-computercraft",
+    "ms-python.isort",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+    "streetsidesoftware.code-spell-checker",
+    "sumneko.lua",
+    "WakaTime.vscode-wakatime"
+  ]
 }
