@@ -22,6 +22,7 @@
     "ms-toolsai.jupyter-renderers",
     "ms-toolsai.vscode-jupyter-cell-tags",
     "ms-toolsai.vscode-jupyter-slideshow",
+    "ms-vscode.hexeditor",
     "streetsidesoftware.code-spell-checker",
     "sumneko.lua",
     "WakaTime.vscode-wakatime"
