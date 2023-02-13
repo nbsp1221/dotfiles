@@ -54,6 +54,9 @@
   "explorer.compactFolders": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
+  "remote.SSH.remotePlatform": {
+    "retn0.iptime.org": "linux"
+  },
   "security.workspace.trust.untrustedFiles": "open",
   "terminal.integrated.fontFamily": "'Cascadia Mono'",
   "terminal.integrated.fontSize": 15,
