@@ -52,6 +52,7 @@
   "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
+  "files.eol": "\n",
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "remote.SSH.remotePlatform": {
