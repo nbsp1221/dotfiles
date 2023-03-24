@@ -53,6 +53,10 @@
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
   "files.eol": "\n",
+  "files.exclude": {
+    "**/.git": true,
+    "**/__pycache__": true
+  },
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.currentLine.over": "line",
   "remote.SSH.remotePlatform": {
@@ -69,10 +73,14 @@
   "[cpp]": {
     "editor.tabSize": 4
   },
+  "[dockerfile]": {
+    "editor.tabSize": 4
+  },
   "[lua]": {
     "editor.tabSize": 4
   },
   "[python]": {
+    "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.tabSize": 4
   }
