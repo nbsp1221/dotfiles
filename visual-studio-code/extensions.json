@@ -1,5 +1,6 @@
 {
   "local": [
+    "csstools.postcss",
     "ms-toolsai.jupyter-keymap",
     "ms-vscode-remote.remote-containers",
     "ms-vscode-remote.remote-ssh",
@@ -12,11 +13,14 @@
     "dbaeumer.vscode-eslint",
     "eamodio.gitlens",
     "GitHub.copilot",
+    "humao.rest-client",
     "JackMacWindows.vscode-computercraft",
     "ms-azuretools.vscode-docker",
     "ms-python.python",
     "ms-vscode.hexeditor",
+    "Orta.vscode-jest",
     "seatonjiang.gitmoji-vscode",
+    "Shinotatwu-DS.file-tree-generator",
     "streetsidesoftware.code-spell-checker",
     "sumneko.lua",
     "WakaTime.vscode-wakatime"
