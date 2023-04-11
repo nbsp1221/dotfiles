@@ -45,7 +45,7 @@
   "debug.javascript.codelens.npmScripts": "never",
   "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll.eslint": true
   },
   "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
