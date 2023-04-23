@@ -1,11 +1,13 @@
+[alias]
+    fixup = !git commit --fixup HEAD && GIT_SEQUENCE_EDITOR=true git rebase --autostash --autosquash -i HEAD~2
 [core]
-	editor = code --wait
+    editor = code --wait
 [credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
+    helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
+    helper = !/usr/bin/gh auth git-credential
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [user]
-	name = Naki
-	email = nbsp1221@gmail.com
+    name = Naki
+    email = nbsp1221@gmail.com
