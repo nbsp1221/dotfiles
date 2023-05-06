@@ -51,6 +51,14 @@
   "editor.fontSize": 15,
   "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "markdown",
+    "typescript",
+    "typescriptreact",
+    "vue"
+  ],
   "explorer.compactFolders": false,
   "files.eol": "\n",
   "files.exclude": {
