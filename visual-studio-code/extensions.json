@@ -1,5 +1,6 @@
 {
   "local": [
+    "aaron-bond.better-comments",
     "csstools.postcss",
     "ms-toolsai.jupyter-keymap",
     "ms-vscode-remote.remote-containers",
