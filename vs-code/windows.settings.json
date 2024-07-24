@@ -1,77 +1,13 @@
 {
-  "cSpell.enabledLanguageIds": [
-    "asciidoc",
-    "c",
-    "cpp",
-    "csharp",
-    "css",
-    "elixir",
-    "erlang",
-    "git-commit",
-    "go",
-    "graphql",
-    "handlebars",
-    "haskell",
-    "html",
-    "jade",
-    "java",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "jsonc",
-    "jupyter",
-    "latex",
-    "less",
-    "lua",
-    "markdown",
-    "php",
-    "plaintext",
-    "pug",
-    "python",
-    "restructuredtext",
-    "rust",
-    "scala",
-    "scminput",
-    "scss",
-    "shellscript",
-    "swift",
-    "text",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "yaml",
-    "yml"
-  ],
   "debug.javascript.codelens.npmScripts": "never",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
   "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
-  "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "markdown",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
-  "explorer.compactFolders": false,
   "files.eol": "\n",
-  "files.exclude": {
-    "**/.git": true,
-    "**/__pycache__": true
-  },
-  "gitlens.codeLens.enabled": false,
-  "gitlens.hovers.currentLine.over": "line",
   "remote.SSH.remotePlatform": {
     "retn0.iptime.org": "linux"
   },
-  "security.workspace.trust.untrustedFiles": "open",
-  "terminal.integrated.fontFamily": "'Cascadia Mono'",
+  "terminal.integrated.fontFamily": "'Cascadia Mono', Pretendard",
   "terminal.integrated.fontSize": 15,
   "workbench.iconTheme": "material-icon-theme",
   "[c]": {
@@ -83,12 +19,33 @@
   "[dockerfile]": {
     "editor.tabSize": 4
   },
+  "[javascript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[javascriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
   "[lua]": {
     "editor.tabSize": 4
   },
+  "[markdown]": {
+    "editor.formatOnSave": true
+  },
   "[python]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
     "editor.tabSize": 4
+  },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
   }
 }
