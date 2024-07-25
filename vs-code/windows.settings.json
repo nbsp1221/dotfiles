@@ -4,6 +4,10 @@
   "editor.fontSize": 15,
   "editor.tabSize": 2,
   "files.eol": "\n",
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true
+  },
   "remote.SSH.remotePlatform": {
     "retn0.iptime.org": "linux"
   },
