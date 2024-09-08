@@ -1,22 +1,28 @@
 {
   "debug.javascript.codelens.npmScripts": "never",
-  "editor.bracketPairColorization.enabled": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll.eslint": "explicit"
   },
   "editor.fontSize": 14,
   "editor.tabSize": 2,
-  "explorer.compactFolders": false,
-  "gitlens.hovers.currentLine.over": "line",
-  "security.workspace.trust.untrustedFiles": "open",
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true
+  },
+  "files.eol": "\n",
   "terminal.integrated.fontFamily": "'MesloLGS NF'",
   "terminal.integrated.fontSize": 14,
-  "workbench.colorTheme": "Default Dark+",
   "workbench.iconTheme": "material-icon-theme",
   "[c]": {
     "editor.tabSize": 4
   },
   "[cpp]": {
+    "editor.tabSize": 4
+  },
+  "[dockerfile]": {
+    "editor.tabSize": 4
+  },
+  "[lua]": {
     "editor.tabSize": 4
   },
   "[python]": {
