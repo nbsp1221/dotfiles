@@ -9,9 +9,11 @@ casks=(
   google-chrome
   iterm2
   maccy
+  mongodb-compass
   rectangle
   slack
   telegram-desktop
+  tunnelblick
   topnotch
   visual-studio-code
 )
