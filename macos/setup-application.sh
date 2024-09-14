@@ -6,6 +6,7 @@ fi
 
 casks=(
   1password
+  dbeaver-community
   google-chrome
   iterm2
   maccy
