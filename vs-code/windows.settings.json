@@ -5,7 +5,14 @@
   },
   "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
+  "editor.insertSpaces": true,
   "editor.tabSize": 2,
+  "eslint.codeActionsOnSave.rules": [
+    "!no-useless-return",
+    "!prefer-const",
+    "!@stylistic/no-multiple-empty-lines",
+    "*"
+  ],
   "files.eol": "\n",
   "github.copilot.enable": {
     "*": true,
@@ -20,19 +27,51 @@
   "[c]": {
     "editor.tabSize": 4
   },
+  "[caddyfile]": {
+    "editor.tabSize": 4
+  },
   "[cpp]": {
     "editor.tabSize": 4
   },
   "[dockerfile]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.tabSize": 4
+  },
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+  "[java]": {
     "editor.tabSize": 4
   },
   "[lua]": {
     "editor.tabSize": 4
   },
   "[markdown]": {
-    "editor.formatOnSave": true
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnSave": true,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "on",
+    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/",
+    "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+    "cSpell.fixSpellingWithRenameProvider": true
+  },
+  "[php]": {
+    "editor.tabSize": 4
+  },
+  "[powershell]": {
+    "editor.tabSize": 4
   },
   "[python]": {
-    "editor.tabSize": 4
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.formatOnType": true,
+    "editor.tabSize": 4,
+    "editor.wordBasedSuggestions": "off",
+    "gitlens.codeLens.symbolScopes": [
+      "!Module"
+    ]
   }
 }
