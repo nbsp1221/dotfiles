@@ -8,6 +8,7 @@ extensions=(
   github.vscode-github-actions
   hashicorp.terraform
   infracost.infracost
+  matthewpi.caddyfile-support
   ms-azuretools.vscode-docker
   ms-python.python
   ms-toolsai.jupyter
