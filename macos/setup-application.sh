@@ -17,11 +17,13 @@ casks=(
   tunnelblick
   topnotch
   visual-studio-code
+  zen-browser
 )
 
 formulae=(
   gh
   nvm
+  oven-sh/bun/bun
 )
 
 brew update
