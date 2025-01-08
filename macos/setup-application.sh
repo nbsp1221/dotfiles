@@ -11,6 +11,7 @@ casks=(
   iterm2
   maccy
   mongodb-compass
+  karabiner-elements
   rectangle
   slack
   telegram-desktop
