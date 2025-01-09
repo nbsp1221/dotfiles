@@ -15,6 +15,7 @@ extensions=(
   ms-vscode-remote.remote-ssh
   ms-vsliveshare.vsliveshare
   pkief.material-icon-theme
+  saoudrizwan.claude-dev
   seatonjiang.gitmoji-vscode
   streetsidesoftware.code-spell-checker
   wakatime.vscode-wakatime
