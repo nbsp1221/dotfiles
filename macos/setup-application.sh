@@ -9,6 +9,7 @@ casks=(
   dbeaver-community
   google-chrome
   iterm2
+  itsycal
   maccy
   mongodb-compass
   karabiner-elements
