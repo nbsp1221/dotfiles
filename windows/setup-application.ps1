@@ -6,6 +6,7 @@ winget upgrade --all --silent --accept-package-agreements --accept-source-agreem
 $apps = @(
     'AgileBits.1Password',
     'Alex313031.Thorium.AVX2',
+    'Anysphere.Cursor',
     'Bandisoft.Bandizip',
     'CPUID.CPU-Z',
     'CPUID.HWMonitor',
@@ -15,7 +16,6 @@ $apps = @(
     'Discord.Discord',
     'Kakao.KakaoTalk',
     'Microsoft.PowerToys',
-    'Microsoft.VisualStudioCode',
     'Microsoft.WindowsTerminal',
     'Notion.Notion',
     'SlackTechnologies.Slack',
