@@ -5,6 +5,7 @@ winget upgrade --all --silent --accept-package-agreements --accept-source-agreem
 # List of programs to install
 $apps = @(
     'AgileBits.1Password',
+    'Alex313031.Thorium.AVX2',
     'Bandisoft.Bandizip',
     'CPUID.CPU-Z',
     'CPUID.HWMonitor',
@@ -20,8 +21,7 @@ $apps = @(
     'SlackTechnologies.Slack',
     'Telegram.TelegramDesktop',
     'Valve.Steam',
-    'voidtools.Everything',
-    'Zen-Team.Zen-Browser.Optimized'
+    'voidtools.Everything'
 )
 
 # Install each app if not already installed
