@@ -9,7 +9,7 @@ This repository contains a collection of custom configurations for various tools
 To run the PowerShell script, make sure to enable script execution by running the following command first:
 
 ```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ```
 
 ## Installation
