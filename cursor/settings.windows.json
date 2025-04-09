@@ -1,4 +1,5 @@
 {
+  "cursor.cpp.disabledLanguages": [],
   "debug.javascript.codelens.npmScripts": "never",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
