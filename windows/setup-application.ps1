@@ -18,6 +18,7 @@ $apps = @(
     'Microsoft.PowerToys',
     'Microsoft.WindowsTerminal',
     'Notion.Notion',
+    'OpenJS.NodeJS',
     'SlackTechnologies.Slack',
     'Telegram.TelegramDesktop',
     'Valve.Steam',
