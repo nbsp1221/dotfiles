@@ -4,7 +4,11 @@
 extensions=(
   "arcanis.vscode-zipfs"
   "dbaeumer.vscode-eslint"
+  "eamodio.gitlens"
+  "ms-azuretools.vscode-docker"
+  "seatonjiang.gitmoji-vscode"
   "streetsidesoftware.code-spell-checker"
+  "wakatime.vscode-wakatime"
 )
 
 echo "Starting Cursor extension installation..."
