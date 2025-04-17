@@ -19,4 +19,4 @@ for extension in "${extensions[@]}"; do
   cursor --install-extension "$extension"
 done
 
-echo "All extensions have been installed successfully." 
+echo "All extensions have been installed successfully."
