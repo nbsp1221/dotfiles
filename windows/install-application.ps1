@@ -6,6 +6,7 @@ winget upgrade --all --silent --accept-package-agreements --accept-source-agreem
 $apps = @(
     'AgileBits.1Password',
     'Alex313031.Thorium.AVX2',
+    'Anthropic.Claude',
     'Anysphere.Cursor',
     'Bandisoft.Bandizip',
     'CPUID.CPU-Z',
