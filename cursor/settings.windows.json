@@ -1,5 +1,23 @@
 {
   "cursor.cpp.disabledLanguages": [],
+  "cursor.general.globalCursorIgnoreList": [
+    "**/.env",
+    "**/.env.*",
+    "!**/.env.example",
+    "**/credentials.json",
+    "**/credentials.*.json",
+    "**/secret.json",
+    "**/secrets.json",
+    "**/*.key",
+    "**/*.pem",
+    "**/*.pfx",
+    "**/*.p12",
+    "**/*.crt",
+    "**/*.cer",
+    "**/id_rsa",
+    "**/id_dsa",
+    "**/.ssh/id_*"
+  ],
   "debug.javascript.codelens.npmScripts": "never",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
