@@ -6,6 +6,7 @@ extensions=(
   "dbaeumer.vscode-eslint"
   "eamodio.gitlens"
   "ms-azuretools.vscode-docker"
+  "ms-python.python"
   "ms-vscode.powershell"
   "seatonjiang.gitmoji-vscode"
   "streetsidesoftware.code-spell-checker"
