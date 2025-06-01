@@ -1,0 +1,45 @@
+{
+  "debug.javascript.codelens.npmScripts": "never",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.fontSize": 14,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "remote.SSH.remotePlatform": {
+    "retn0.iptime.org": "linux"
+  },
+  "terminal.integrated.fontFamily": "'MesloLGS NF'",
+  "terminal.integrated.fontSize": 14,
+  "workbench.activityBar.orientation": "vertical",
+  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.iconTheme": "material-icon-theme",
+  "[c]": {
+    "editor.tabSize": 4
+  },
+  "[cpp]": {
+    "editor.tabSize": 4
+  },
+  "[dockerfile]": {
+    "editor.tabSize": 4
+  },
+  "[go]": {
+    "editor.tabSize": 4
+  },
+  "[java]": {
+    "editor.tabSize": 4
+  },
+  "[lua]": {
+    "editor.tabSize": 4
+  },
+  "[php]": {
+    "editor.tabSize": 4
+  },
+  "[powershell]": {
+    "editor.tabSize": 4
+  },
+  "[python]": {
+    "editor.tabSize": 4
+  }
+}
