@@ -8,6 +8,7 @@ $apps = @(
     "Alex313031.Thorium.AVX2",
     "Anthropic.Claude",
     "Anysphere.Cursor",
+    "astral-sh.uv",
     "Bandisoft.Bandizip",
     "CPUID.CPU-Z",
     "CPUID.HWMonitor",
