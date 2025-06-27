@@ -24,7 +24,6 @@ $apps = @(
     "Obsidian.Obsidian",
     "OpenJS.NodeJS.LTS",
     "OpenWhisperSystems.Signal",
-    "Oven-sh.Bun",
     "Python.Python.3.13",
     "SlackTechnologies.Slack",
     "Telegram.TelegramDesktop",
@@ -35,7 +34,7 @@ $apps = @(
 # Install each app if not already installed
 Write-Host "Starting installation of applications..."
 foreach ($app in $apps) {
-    # Check if app is already installed using direct winget execution
+    # Check if app is already installed using direct WinGet execution
     $null = winget list --id "$app" --exact 2>$null
 
     if ($LASTEXITCODE -eq 0) {
@@ -46,6 +45,10 @@ foreach ($app in $apps) {
         winget install --id="$app" --silent --accept-package-agreements --accept-source-agreements
     }
 }
+
+# Install Bun (WinGet has bunx issues)
+Write-Host "Installing Bun using official installer..."
+irm https://bun.sh/install.ps1 | iex
 
 # Finish
 Write-Host "All applications have been installed successfully!"
