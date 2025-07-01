@@ -15,6 +15,7 @@ $apps = @(
     "CrystalDewWorld.CrystalDiskInfo",
     "CrystalDewWorld.CrystalDiskMark",
     "Daum.PotPlayer",
+    "DBeaver.DBeaver.Community",
     "Discord.Discord",
     "Kakao.KakaoTalk",
     "Microsoft.PowerToys",
