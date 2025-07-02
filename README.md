@@ -20,7 +20,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 For the fastest setup, you can directly execute the installation script from the internet:
 
 ```powershell
-iex (irm 'https://raw.githubusercontent.com/nbsp1221/dotfiles/main/windows/install-applications.ps1')
+irm https://raw.githubusercontent.com/nbsp1221/dotfiles/main/windows/install-applications.ps1 | iex
 ```
 
 ### Manual Installation
