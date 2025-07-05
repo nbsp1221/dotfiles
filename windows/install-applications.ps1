@@ -51,5 +51,15 @@ foreach ($app in $apps) {
 Write-Host "Installing Bun using official installer..."
 irm https://bun.sh/install.ps1 | iex
 
+# Refresh environment variables
+Write-Host "Refreshing environment variables..."
+$userPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::User)
+$machinePath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
+$env:Path = $userPath + ";" + $machinePath
+
+# Install Gemini CLI
+Write-Host "Installing Gemini CLI..."
+npm install -g @google/gemini-cli
+
 # Finish
 Write-Host "All applications have been installed successfully!"
