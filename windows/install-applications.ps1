@@ -17,6 +17,8 @@ $apps = @(
     "Daum.PotPlayer",
     "DBeaver.DBeaver.Community",
     "Discord.Discord",
+    "Git.Git",
+    "GitHub.cli",
     "Kakao.KakaoTalk",
     "Microsoft.PowerToys",
     "Microsoft.VisualStudioCode",
