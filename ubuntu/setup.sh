@@ -1,0 +1,106 @@
+#!/bin/bash
+
+# Docker test commands for testing this script:
+# docker run --privileged --rm -it -v ./:/app ubuntu:22.04 /bin/bash
+# apt update && apt install -y sudo && ./app/ubuntu/setup.sh
+
+set -e
+
+# Essential packages
+ESSENTIAL_PACKAGES=(
+  apt-transport-https
+  build-essential
+  ca-certificates
+  curl
+  git
+  gnupg
+  htop
+  nano
+  neofetch
+  net-tools
+  pkg-config
+  python3
+  python3-pip
+  python3-venv
+  software-properties-common
+  tmux
+  tree
+  unzip
+  vim
+  wget
+  zip
+  zsh
+)
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+# Logging functions
+log() { echo -e "${BLUE}[INFO]${NC} $1"; }
+success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+error() { echo -e "${RED}[ERROR]${NC} $1"; }
+
+#================================================================================
+# System Update and Essential Packages Installation
+#================================================================================
+
+log "Updating system and installing essential packages..."
+
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y "${ESSENTIAL_PACKAGES[@]}"
+sudo apt autoremove -y
+sudo apt clean
+
+success "System update and essential packages installation completed."
+
+#================================================================================
+# Programming Languages and Runtime
+#================================================================================
+
+log "Installing programming languages and runtime..."
+
+# Install fnm and Node.js
+command -v fnm > /dev/null 2>&1 || {
+  curl -fsSL https://fnm.vercel.app/install | bash
+  export PATH="$HOME/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+  fnm install --lts
+  fnm use lts-latest
+  fnm default lts-latest
+  npm install -g corepack
+  corepack enable
+}
+
+# Install Bun
+command -v bun > /dev/null 2>&1 || {
+  curl -fsSL https://bun.sh/install | bash
+  export PATH="$HOME/.bun/bin:$PATH"
+}
+
+success "Programming languages and runtime installation completed."
+
+#================================================================================
+# Useful Utilities
+#================================================================================
+
+log "Installing useful utilities..."
+
+# Install Docker
+command -v docker > /dev/null 2>&1 || {
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+    $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  sudo apt-get update
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  sudo usermod -aG docker $USER
+}
+
+log "Useful utilities installation completed."
