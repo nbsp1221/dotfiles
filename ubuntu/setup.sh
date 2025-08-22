@@ -100,3 +100,26 @@ command -v docker > /dev/null 2>&1 || {
 }
 
 log "Useful utilities installation completed."
+
+#================================================================================
+# AI Tools
+#================================================================================
+
+log "Installing AI tools..."
+
+# Install Codex
+command -v codex > /dev/null 2>&1 || {
+  npm install -g @openai/codex
+}
+
+# Install Claude Code
+command -v claude > /dev/null 2>&1 || {
+  npm install -g @anthropic-ai/claude-code
+}
+
+# Install Gemini CLI
+command -v gemini > /dev/null 2>&1 || {
+  npm install -g @google/gemini-cli
+}
+
+log "AI tools installation completed."
