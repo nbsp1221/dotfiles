@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Docker test commands for testing this script:
-# docker run --privileged --rm -it -v ./:/app ubuntu:22.04 /bin/bash
-# apt update && apt install -y sudo && ./app/ubuntu/setup.sh
-
 set -e
 
 # Essential packages

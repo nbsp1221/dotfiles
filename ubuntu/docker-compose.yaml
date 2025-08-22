@@ -1,0 +1,12 @@
+services:
+  ubuntu:
+    container_name: ubuntu-setup-script-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: "no"
+    privileged: true
+    stdin_open: true
+    tty: true
+    volumes:
+      - ../:/app:ro
