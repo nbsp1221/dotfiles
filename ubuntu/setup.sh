@@ -96,7 +96,7 @@ command -v docker > /dev/null 2>&1 || {
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   sudo apt-get update
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-  sudo usermod -aG docker $USER
+  sudo usermod -aG docker $(whoami)
 }
 
 log "Useful utilities installation completed."
