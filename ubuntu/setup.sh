@@ -16,7 +16,9 @@ ESSENTIAL_PACKAGES=(
   net-tools
   pkg-config
   python3
+  python3-dev
   python3-pip
+  python3-setuptools
   python3-venv
   software-properties-common
   tmux
@@ -58,6 +60,12 @@ success "System update and essential packages installation completed."
 #================================================================================
 
 log "Installing programming languages and runtime..."
+
+# Install uv
+# https://docs.astral.sh/uv/getting-started/installation
+command -v uv > /dev/null 2>&1 || {
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+}
 
 # Install fnm and Node.js
 command -v fnm > /dev/null 2>&1 || {
