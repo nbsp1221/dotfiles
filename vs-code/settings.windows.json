@@ -1,10 +1,15 @@
 {
+  "$schema": "vscode://schemas/settings/user",
   "debug.javascript.codelens.npmScripts": "never",
   "editor.fontFamily": "'Cascadia Code', Pretendard",
   "editor.fontSize": 15,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "files.eol": "\n",
+  "notebook.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "notebook.formatOnSave.enabled": true,
   "remote.SSH.remotePlatform": {
     "retn0.iptime.org": "linux"
   },
@@ -37,6 +42,11 @@
     "editor.tabSize": 4
   },
   "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
     "editor.tabSize": 4
   }
 }
