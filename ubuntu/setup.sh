@@ -5,8 +5,10 @@ set -e
 # Essential packages
 ESSENTIAL_PACKAGES=(
   apt-transport-https
+  btop
   build-essential
   ca-certificates
+  cpu-x
   curl
   git
   gnupg
