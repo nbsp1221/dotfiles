@@ -87,6 +87,13 @@ command -v bun > /dev/null 2>&1 || {
   export PATH="$HOME/.bun/bin:$PATH"
 }
 
+# Install Rust
+# https://www.rust-lang.org/tools/install
+command -v rustc > /dev/null 2>&1 || {
+  curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh -s -- -y
+  source "$HOME/.cargo/env"
+}
+
 success "Programming languages and runtime installation completed."
 
 #================================================================================
