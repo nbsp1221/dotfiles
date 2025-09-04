@@ -13,6 +13,7 @@ ESSENTIAL_PACKAGES=(
   git
   gnupg
   htop
+  micro
   nano
   neofetch
   net-tools
