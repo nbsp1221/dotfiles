@@ -48,5 +48,8 @@
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
     "editor.tabSize": 4
+  },
+  "[rust]": {
+    "editor.tabSize": 4
   }
 }
