@@ -52,7 +52,7 @@ log "Updating system and installing essential packages..."
 
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y "${ESSENTIAL_PACKAGES[@]}"
+sudo DEBIAN_FRONTEND=noninteractive apt install -y "${ESSENTIAL_PACKAGES[@]}"
 sudo apt autoremove -y
 sudo apt clean
 
