@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "alwaysThinkingEnabled": true,
+  "env": {
+    "MAX_THINKING_TOKENS": "20000"
+  },
+  "includeCoAuthoredBy": false,
+  "outputStyle": "Explanatory"
+}

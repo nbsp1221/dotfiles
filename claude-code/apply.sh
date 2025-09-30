@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CLAUDE_HOME="${HOME}/.claude"
+
+mkdir -p "$CLAUDE_HOME"
+
+BASE_SETTINGS_JSON="${ROOT_DIR}/settings.json"
+LOCAL_SETTINGS_JSON="${ROOT_DIR}/settings.local.json"
+TARGET_SETTINGS_JSON="${CLAUDE_HOME}/settings.json"
+
+BASE_COMMANDS_DIR="${ROOT_DIR}/commands"
+LOCAL_COMMANDS_DIR="${ROOT_DIR}/commands.local"
+TARGET_COMMANDS_DIR="${CLAUDE_HOME}/commands"
+
+cp "$BASE_SETTINGS_JSON" "$LOCAL_SETTINGS_JSON"
+rm -rf "$LOCAL_COMMANDS_DIR"
+cp -R "$BASE_COMMANDS_DIR" "$LOCAL_COMMANDS_DIR"
+ln -sfn "$LOCAL_SETTINGS_JSON" "$TARGET_SETTINGS_JSON"
+rm -rf "$TARGET_COMMANDS_DIR"
+ln -sfn "$LOCAL_COMMANDS_DIR" "$TARGET_COMMANDS_DIR"

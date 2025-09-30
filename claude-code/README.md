@@ -1,35 +1,17 @@
-# Claude Code Commands
+# Claude Code
 
-This directory contains custom commands for Claude Code CLI.
+This directory contains the custom configuration and slash commands that I use with Claude Code.
 
-## Available Commands
+## Quick Setup
 
-### `/commit`
-
-Analyzes git log to understand the project's commit convention and creates an appropriate commit message in English for the current changes.
-
-**Features:**
-- Supports Conventional Commits (`feat:`, `fix:`, etc.)
-- Supports Gitmoji style (🐛, ✨, 📝, etc.)
-- Automatically detects and follows existing project conventions
-
-## Installation
-
-### Method 1: Symbolic Link (Recommended)
 ```bash
-ln -sf $(pwd)/claude-code/commands/commit.md ~/.claude/commands/commit.md
+cd claude-code
+./apply.sh
 ```
 
-### Method 2: Direct Copy
-```bash
-cp claude-code/commands/commit.md ~/.claude/commands/
-```
+## Commands Overview
 
-## Usage
-
-In any project, simply use:
-```
-/commit
-```
-
-Claude Code will analyze your changes and generate an appropriate commit message following the project's conventions.
+- `/analyze` – Checklist for understanding a new project’s structure, tech stack, and AI-specific docs.
+- `/commit [--no-verify] [--dry-run]` – Inspects recent commits and suggests a message following the detected convention (supports Conventional Commits and Gitmoji).
+- `/create-command` – Guided template for authoring new Claude Code slash commands.
+- `/troubleshoot` – Structured debugging workflow covering analysis, investigation, and resolution steps.
