@@ -1,12 +1,26 @@
+x-ubuntu-base: &ubuntu-base
+  build: &ubuntu-base-build
+    context: .
+    dockerfile: Dockerfile
+  privileged: true
+  stdin_open: true
+  tty: true
+  volumes:
+    - ./:/app:ro
+
 services:
-  ubuntu:
-    container_name: ubuntu-setup-script-test
+  ubuntu-24-setup-script-test:
+    <<: *ubuntu-base
+    container_name: ubuntu-24-setup-script-test
     build:
-      context: .
-      dockerfile: Dockerfile
-    restart: "no"
-    privileged: true
-    stdin_open: true
-    tty: true
-    volumes:
-      - ../:/app:ro
+      <<: *ubuntu-base-build
+      args:
+        UBUNTU_VERSION: "24.04"
+
+  ubuntu-22-setup-script-test:
+    <<: *ubuntu-base
+    container_name: ubuntu-22-setup-script-test
+    build:
+      <<: *ubuntu-base-build
+      args:
+        UBUNTU_VERSION: "22.04"

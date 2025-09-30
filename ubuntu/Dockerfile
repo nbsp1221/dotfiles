@@ -1,16 +1,19 @@
-FROM ubuntu:22.04
+ARG UBUNTU_VERSION=24.04
+
+FROM ubuntu:${UBUNTU_VERSION}
 
 # Install sudo and create test user
 RUN apt-get update && \
     apt-get install -y sudo && \
-    useradd -m -s /bin/bash ubuntu && \
-    usermod -aG sudo ubuntu && \
-    echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    apt-get clean
+    useradd -m -s /bin/bash testuser && \
+    usermod -aG sudo testuser && \
+    echo 'testuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Switch to test user
-USER ubuntu
-WORKDIR /home/ubuntu
+USER testuser
+WORKDIR /app
 
 # Run the setup script
-CMD ["bash", "-c", "/app/ubuntu/setup.sh; sleep infinity"]
+CMD ["bash", "-c", "/app/setup.sh; sleep infinity"]
