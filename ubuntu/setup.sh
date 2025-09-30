@@ -74,7 +74,7 @@ command -v uv > /dev/null 2>&1 || {
 command -v fnm > /dev/null 2>&1 || {
   curl -fsSL https://fnm.vercel.app/install | bash
   export PATH="$HOME/.local/share/fnm:$PATH"
-  eval "`fnm env`"
+  eval "$(fnm env --shell bash)"
   fnm install --lts
   fnm use lts-latest
   fnm default lts-latest
