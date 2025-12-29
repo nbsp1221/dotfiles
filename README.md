@@ -20,7 +20,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 For the fastest setup, you can directly execute the installation script from the internet:
 
 ```powershell
-irm https://raw.githubusercontent.com/nbsp1221/dotfiles/main/windows/install-applications.ps1 | iex
+irm https://raw.githubusercontent.com/nbsp1221/dotfiles/main/windows/setup.ps1 | iex
 ```
 
 ### Manual Installation
@@ -35,9 +35,9 @@ If you prefer to review the script before execution:
 
 2. Run the installation script:
    ```powershell
-   .\windows\install-applications.ps1
+   .\windows\setup.ps1
    ```
 
 ### What Gets Installed
 
-The script installs a curated set of applications using winget. Check the `windows/install-applications.ps1` file to see the complete list of applications that will be installed.
+The script installs a curated set of applications using winget. Check the `windows/setup.ps1` file to see the complete list of applications that will be installed.
