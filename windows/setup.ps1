@@ -51,6 +51,7 @@ $WINGET_APPS = @(
     "Obsidian.Obsidian",
     "Rustlang.Rustup",
     "Schniz.fnm",
+    "TechPowerUp.GPU-Z",
     "Telegram.TelegramDesktop",
     "Valve.Steam",
     "voidtools.Everything"
