@@ -30,7 +30,6 @@ function Update-SessionEnvironment {
 # List of programs to install via WinGet
 $WINGET_APPS = @(
     "AgileBits.1Password",
-    "Alex313031.Thorium.AVX2",
     "astral-sh.uv",
     "Bandisoft.Bandizip",
     "CPUID.CPU-Z",
@@ -42,6 +41,7 @@ $WINGET_APPS = @(
     "Discord.Discord",
     "Git.Git",
     "GitHub.cli",
+    "ImputNet.Helium",
     "Kakao.KakaoTalk",
     "Microsoft.PowerShell",
     "Microsoft.PowerToys",
