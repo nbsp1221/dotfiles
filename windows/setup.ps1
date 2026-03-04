@@ -52,6 +52,35 @@ function Update-SessionEnvironment {
     $env:PSModulePath = $originalPSModulePath
 }
 
+#================================================================================
+# Enable Windows Optional Features
+#================================================================================
+
+function Assert-WindowsOptionalFeature {
+    param(
+        [string]$FeatureName,
+        [string]$DisplayName
+    )
+
+    Write-Log "Enabling $DisplayName..."
+
+    $feature = Get-WindowsOptionalFeature -Online -FeatureName $FeatureName
+    if ($feature.State -eq "Enabled") {
+        Write-Host "$DisplayName is already enabled. Skipping..."
+        return
+    }
+
+    $result = Enable-WindowsOptionalFeature -Online -FeatureName $FeatureName -All -NoRestart
+    if ($result.RestartNeeded) {
+        Write-Success "$DisplayName enabled. Restart is required to apply changes."
+    }
+    else {
+        Write-Success "$DisplayName enabled successfully."
+    }
+}
+
+Assert-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -DisplayName "Windows Sandbox"
+
 # List of programs to install via WinGet
 $WINGET_APPS = @(
     "AgileBits.1Password",
