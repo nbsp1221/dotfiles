@@ -27,9 +27,29 @@ function Test-CommandExists {
 
 # Refresh environment variables in current session
 function Update-SessionEnvironment {
-    $machinePath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
-    $userPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::User)
-    $env:Path = "$machinePath;$userPath"
+    $originalPSModulePath = [System.Environment]::GetEnvironmentVariable("PSModulePath", "Process")
+    $scopeList = @("Machine")
+
+    if ($env:USERNAME -ne "SYSTEM") {
+        $scopeList += "User"
+    }
+
+    foreach ($scope in $scopeList) {
+        $envNames = [System.Environment]::GetEnvironmentVariables($scope).Keys
+        foreach ($name in $envNames) {
+            $value = [System.Environment]::GetEnvironmentVariable($name, $scope)
+            if ($null -ne $value) {
+                Set-Item -Path "Env:$name" -Value $value
+            }
+        }
+    }
+
+    $paths = "Machine", "User" | ForEach-Object {
+        ([System.Environment]::GetEnvironmentVariable("PATH", $_)) -split ";"
+    } | Where-Object { $_ } | Select-Object -Unique
+
+    $env:PATH = $paths -join ";"
+    $env:PSModulePath = $originalPSModulePath
 }
 
 # List of programs to install via WinGet
