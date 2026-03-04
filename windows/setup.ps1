@@ -2,17 +2,22 @@
 
 $ErrorActionPreference = "Stop"
 
-# Colors
-$ESC = [char]27
-$RED = "$ESC[0;31m"
-$GREEN = "$ESC[0;32m"
-$BLUE = "$ESC[0;34m"
-$NC = "$ESC[0m"
-
 # Logging functions
-function Log { param([string]$Message) Write-Host "${BLUE}[INFO]${NC} $Message" }
-function Success { param([string]$Message) Write-Host "${GREEN}[SUCCESS]${NC} $Message" }
-function Error { param([string]$Message) Write-Host "${RED}[ERROR]${NC} $Message" }
+function Write-Log {
+    param([string]$Message)
+    Write-Host "[INFO] " -ForegroundColor Cyan -NoNewline
+    Write-Host $Message
+}
+function Write-Success {
+    param([string]$Message)
+    Write-Host "[SUCCESS] " -ForegroundColor Green -NoNewline
+    Write-Host $Message
+}
+function Write-Failure {
+    param([string]$Message)
+    Write-Host "[FAILURE] " -ForegroundColor Red -NoNewline
+    Write-Host $Message
+}
 
 # Check if a command exists
 function Test-CommandExists {
@@ -61,17 +66,17 @@ $WINGET_APPS = @(
 # Update all installed applications
 #================================================================================
 
-Log "Updating all installed applications..."
+Write-Log "Updating all installed applications..."
 
 winget upgrade --all --silent --accept-package-agreements --accept-source-agreements
 
-Success "All installed applications updated."
+Write-Success "All installed applications updated."
 
 #================================================================================
 # Install applications
 #================================================================================
 
-Log "Installing applications via WinGet..."
+Write-Log "Installing applications via WinGet..."
 
 foreach ($app in $WINGET_APPS) {
     $null = winget list --id "$app" --exact 2>$null
@@ -85,13 +90,13 @@ foreach ($app in $WINGET_APPS) {
     }
 }
 
-Success "Applications installation completed."
+Write-Success "Applications installation completed."
 
 #================================================================================
 # Install programming languages and runtime
 #================================================================================
 
-Log "Installing programming languages and runtime..."
+Write-Log "Installing programming languages and runtime..."
 
 Update-SessionEnvironment
 
@@ -124,13 +129,13 @@ else {
     Write-Host "Bun is already installed. Skipping..."
 }
 
-Success "Programming languages and runtime installation completed."
+Write-Success "Programming languages and runtime installation completed."
 
 #================================================================================
 # Install AI tools
 #================================================================================
 
-Log "Installing AI tools..."
+Write-Log "Installing AI tools..."
 
 Update-SessionEnvironment
 
@@ -150,4 +155,4 @@ else {
     Write-Host "Gemini CLI is already installed. Skipping..."
 }
 
-Success "AI tools installation completed."
+Write-Success "AI tools installation completed."
