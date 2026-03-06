@@ -53,6 +53,206 @@ function Update-SessionEnvironment {
 }
 
 #================================================================================
+# Install fonts
+#================================================================================
+
+$FONT_PACKAGES = @(
+    @{
+        Name         = "Pretendard"
+        Version      = "1.3.9"
+        Url          = "https://github.com/orioncactus/pretendard/releases/download/v1.3.9/Pretendard-1.3.9.zip"
+        SourceDir    = "public/static"
+        FilePatterns = @("*.otf")
+    }
+)
+
+function New-FontResourceType {
+    if ("FontResource.FontInstaller" -as [type]) {
+        return
+    }
+
+    $fontCSharpCode = @'
+    using System;
+    using System.IO;
+    using System.Runtime.InteropServices;
+
+    namespace FontResource {
+        public class FontInstaller {
+            private static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
+
+            [DllImport("gdi32.dll")]
+            private static extern int AddFontResource(string lpFilename);
+
+            [return: MarshalAs(UnmanagedType.Bool)]
+            [DllImport("user32.dll", SetLastError = true)]
+            private static extern bool PostMessage(IntPtr hWnd, WM Msg, IntPtr wParam, IntPtr lParam);
+
+            public enum WM : uint {
+                FONTCHANGE = 0x001D
+            }
+
+            public static int AddFont(string fontFilePath) {
+                FileInfo fontFile = new FileInfo(fontFilePath);
+                if (!fontFile.Exists) { throw new FileNotFoundException("Font file not found"); }
+                int retVal = AddFontResource(fontFilePath);
+                PostMessage(HWND_BROADCAST, WM.FONTCHANGE, IntPtr.Zero, IntPtr.Zero);
+                return retVal;
+            }
+        }
+    }
+'@
+
+    Add-Type -TypeDefinition $fontCSharpCode -ErrorAction Stop
+}
+
+function Get-FontDisplayName {
+    param(
+        [Parameter(Mandatory)]
+        [System.IO.FileInfo] $File
+    )
+
+    try {
+        $folderObj = (New-Object -ComObject Shell.Application).Namespace($File.DirectoryName)
+        if ($null -ne $folderObj) {
+            $fileObj = $folderObj.Items().Item($File.Name)
+            $fontName = $folderObj.GetDetailsOf($fileObj, 21)
+            if ($fontName) {
+                return $fontName
+            }
+        }
+    }
+    catch {
+        # Fall back to filename without extensions
+    }
+
+    return $File.BaseName
+}
+
+function Install-FontFiles {
+    [CmdletBinding()]
+    param(
+        [string[]] $Path,
+        [switch] $Recurse,
+        [switch] $Force
+    )
+
+    $fontTypeSuffix = @{
+        ".fon" = ""
+        ".fnt" = ""
+        ".ttf" = " (TrueType)"
+        ".ttc" = " (TrueType)"
+        ".otf" = " (OpenType)"
+    }
+
+    $fontFolder = "$env:WINDIR\Fonts"
+    $fontRegistryPath = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Fonts"
+
+    if (-not (Test-Path -Path $fontFolder)) {
+        $null = New-Item -Path $fontFolder -ItemType Directory -Force
+    }
+
+    $fontFiles = @()
+    foreach ($pathItem in $Path) {
+        if (Test-Path -Path $pathItem -PathType Container) {
+            $fontFiles += Get-ChildItem -Path $pathItem -File -Recurse:$Recurse -Include *.fon,*.fnt,*.ttf,*.ttc,*.otf
+        }
+        else {
+            $fontFiles += Get-ChildItem -Path $pathItem -File -ErrorAction Stop
+        }
+    }
+
+    if ($fontFiles.Count -eq 0) {
+        return
+    }
+
+    New-FontResourceType
+
+    foreach ($fontFile in $fontFiles) {
+        $extension = $fontFile.Extension.ToLower()
+        if (-not $fontTypeSuffix.ContainsKey($extension)) {
+            continue
+        }
+
+        try {
+            $destPath = Join-Path -Path $fontFolder -ChildPath $fontFile.Name
+            Copy-Item -Path $fontFile.FullName -Destination $destPath -Force -ErrorAction Stop
+            $retVal = [FontResource.FontInstaller]::AddFont($destPath)
+            if ($retVal -eq 0) {
+                Write-Failure "Font install failed: $($fontFile.FullName)"
+                continue
+            }
+
+            $fontName = Get-FontDisplayName -File $fontFile
+            $regName = "$fontName$($fontTypeSuffix[$extension])"
+            $regValue = $fontFile.Name
+            New-ItemProperty -Path $fontRegistryPath -Name $regName -Value $regValue -PropertyType String -Force | Out-Null
+        }
+        catch {
+            Write-Failure "Font install error: $($fontFile.FullName) - $($_.Exception.Message)"
+        }
+    }
+}
+
+function Install-FontPackages {
+    param(
+        [hashtable[]] $Packages
+    )
+
+    $tempRoot = Join-Path $env:TEMP "font-packages"
+    if (-not (Test-Path -Path $tempRoot)) {
+        $null = New-Item -Path $tempRoot -ItemType Directory -Force
+    }
+
+    foreach ($pkg in $Packages) {
+        $name = $pkg.Name
+        $url = $pkg.Url
+        $downloadFile = Join-Path $tempRoot (Split-Path -Path $url -Leaf)
+        $extractDir = Join-Path $tempRoot $name
+
+        Write-Log "Downloading font package: $name"
+        Invoke-WebRequest -Uri $url -OutFile $downloadFile
+
+        if ($downloadFile.ToLower().EndsWith(".zip")) {
+            if (Test-Path -Path $extractDir) {
+                Remove-Item -Path $extractDir -Recurse -Force
+            }
+
+            Expand-Archive -Path $downloadFile -DestinationPath $extractDir -Force
+
+            $searchRoot = $extractDir
+            if ($pkg.ContainsKey("SourceDir") -and $pkg.SourceDir) {
+                $searchRoot = Join-Path $extractDir $pkg.SourceDir
+            }
+
+            if (-not (Test-Path -Path $searchRoot)) {
+                Write-Failure "Font package path not found: $searchRoot"
+                continue
+            }
+
+            if (-not ($pkg.ContainsKey("FilePatterns") -and $pkg.FilePatterns)) {
+                Write-Failure "FilePatterns is required for package: $name"
+                continue
+            }
+
+            $fontFiles = Get-ChildItem -Path $searchRoot -File -Recurse -Include $pkg.FilePatterns
+            if ($fontFiles.Count -eq 0) {
+                Write-Failure "No font files found for package: $name"
+                continue
+            }
+
+            Install-FontFiles -Path $fontFiles.FullName
+        }
+        else {
+            Install-FontFiles -Path $downloadFile
+        }
+    }
+}
+
+Write-Log "Installing fonts..."
+Install-FontPackages -Packages $FONT_PACKAGES
+Write-Success "Fonts installation completed."
+
+#================================================================================
 # Enable Windows Optional Features
 #================================================================================
 
