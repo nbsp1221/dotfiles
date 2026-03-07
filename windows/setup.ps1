@@ -61,6 +61,7 @@ $FONT_PACKAGES = @(
         Name         = "Pretendard"
         Version      = "1.3.9"
         Url          = "https://github.com/orioncactus/pretendard/releases/download/v1.3.9/Pretendard-1.3.9.zip"
+        Sha256       = "04BE351A74D6BF7D60C480A3087E51D185485D35A52023142AF1DF19EB8C428A"
         SourceDir    = "public/static"
         FilePatterns = @("*.otf")
     }
@@ -80,8 +81,8 @@ function New-FontResourceType {
         public class FontInstaller {
             private static readonly IntPtr HWND_BROADCAST = new IntPtr(0xffff);
 
-            [DllImport("gdi32.dll")]
-            private static extern int AddFontResource(string lpFilename);
+            [DllImport("gdi32.dll", EntryPoint = "AddFontResourceW", CharSet = CharSet.Unicode, ExactSpelling = true)]
+            private static extern int AddFontResourceW(string lpFilename);
 
             [return: MarshalAs(UnmanagedType.Bool)]
             [DllImport("user32.dll", SetLastError = true)]
@@ -94,7 +95,7 @@ function New-FontResourceType {
             public static int AddFont(string fontFilePath) {
                 FileInfo fontFile = new FileInfo(fontFilePath);
                 if (!fontFile.Exists) { throw new FileNotFoundException("Font file not found"); }
-                int retVal = AddFontResource(fontFilePath);
+                int retVal = AddFontResourceW(fontFilePath);
                 PostMessage(HWND_BROADCAST, WM.FONTCHANGE, IntPtr.Zero, IntPtr.Zero);
                 return retVal;
             }
@@ -132,8 +133,7 @@ function Install-FontFiles {
     [CmdletBinding()]
     param(
         [string[]] $Path,
-        [switch] $Recurse,
-        [switch] $Force
+        [switch] $Recurse
     )
 
     $fontTypeSuffix = @{
@@ -162,10 +162,11 @@ function Install-FontFiles {
     }
 
     if ($fontFiles.Count -eq 0) {
-        return
+        return 0
     }
 
     New-FontResourceType
+    $failureCount = 0
 
     foreach ($fontFile in $fontFiles) {
         $extension = $fontFile.Extension.ToLower()
@@ -179,6 +180,7 @@ function Install-FontFiles {
             $retVal = [FontResource.FontInstaller]::AddFont($destPath)
             if ($retVal -eq 0) {
                 Write-Failure "Font install failed: $($fontFile.FullName)"
+                $failureCount++
                 continue
             }
 
@@ -189,8 +191,11 @@ function Install-FontFiles {
         }
         catch {
             Write-Failure "Font install error: $($fontFile.FullName) - $($_.Exception.Message)"
+            $failureCount++
         }
     }
+
+    return $failureCount
 }
 
 function Install-FontPackages {
@@ -203,6 +208,8 @@ function Install-FontPackages {
         $null = New-Item -Path $tempRoot -ItemType Directory -Force
     }
 
+    $failureCount = 0
+
     foreach ($pkg in $Packages) {
         $name = $pkg.Name
         $url = $pkg.Url
@@ -211,6 +218,14 @@ function Install-FontPackages {
 
         Write-Log "Downloading font package: $name"
         Invoke-WebRequest -Uri $url -OutFile $downloadFile
+
+        if ($pkg.ContainsKey("Sha256") -and $pkg.Sha256) {
+            $expectedHash = $pkg.Sha256.ToUpperInvariant()
+            $actualHash = (Get-FileHash -Path $downloadFile -Algorithm SHA256).Hash.ToUpperInvariant()
+            if ($actualHash -ne $expectedHash) {
+                throw "SHA-256 mismatch for font package '$name'. Expected $expectedHash but got $actualHash."
+            }
+        }
 
         if ($downloadFile.ToLower().EndsWith(".zip")) {
             if (Test-Path -Path $extractDir) {
@@ -226,30 +241,38 @@ function Install-FontPackages {
 
             if (-not (Test-Path -Path $searchRoot)) {
                 Write-Failure "Font package path not found: $searchRoot"
+                $failureCount++
                 continue
             }
 
             if (-not ($pkg.ContainsKey("FilePatterns") -and $pkg.FilePatterns)) {
                 Write-Failure "FilePatterns is required for package: $name"
+                $failureCount++
                 continue
             }
 
             $fontFiles = Get-ChildItem -Path $searchRoot -File -Recurse -Include $pkg.FilePatterns
             if ($fontFiles.Count -eq 0) {
                 Write-Failure "No font files found for package: $name"
+                $failureCount++
                 continue
             }
 
-            Install-FontFiles -Path $fontFiles.FullName
+            $failureCount += Install-FontFiles -Path $fontFiles.FullName
         }
         else {
-            Install-FontFiles -Path $downloadFile
+            $failureCount += Install-FontFiles -Path $downloadFile
         }
     }
+
+    return $failureCount
 }
 
 Write-Log "Installing fonts..."
-Install-FontPackages -Packages $FONT_PACKAGES
+$fontInstallFailures = Install-FontPackages -Packages $FONT_PACKAGES
+if ($fontInstallFailures -gt 0) {
+    throw "Fonts installation failed for $fontInstallFailures file(s) or package(s)."
+}
 Write-Success "Fonts installation completed."
 
 #================================================================================
