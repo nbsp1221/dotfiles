@@ -4,6 +4,19 @@ This document contains specifications for my personal computers and devices. Thi
 
 ## Desktops
 
+### retn0-dt-main
+
+| Component | Specification |
+|-----------|---------------|
+| **Device Name** | retn0-dt-main |
+| **CPU** | AMD Ryzen 5 5600X |
+| **Motherboard** | ASUS ROG STRIX B550-I GAMING |
+| **Memory** | 32GB DDR4 |
+| **GPU** | NVIDIA GeForce RTX 4060 Ti |
+| **OS** | Windows 11 Pro 25H2 |
+| **Storage #1** | Samsung 980 PRO M.2 NVMe PCIe 4.0 1TB SSD (C:) |
+| **Storage #2** | Crucial P5 Plus M.2 NVMe PCIe 4.0 2TB SSD (D:) |
+
 ### retn0-dt-parents
 
 | Component | Specification |
